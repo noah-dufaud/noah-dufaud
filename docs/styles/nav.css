@@ -1,0 +1,138 @@
+
+/* 
+    Navigation Pannel 
+        The navigation Pannel
+*/
+
+#navigation-pannel {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    width: 25px;
+    height: 33px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    padding: 0px;
+    border-radius: 5px;
+    padding: 5px 10px 0px 5px;
+    border: solid 1pt gainsboro;
+    background-color: rgb(255, 255, 255);
+}
+
+#navigation-pannel.expanded {
+    width: 40vh;
+    height: 96vh;
+    top: 1vh;
+    left: 1vh;
+    border-radius: 5px;
+    padding: 5px 10px 0px 5px;
+}
+
+/*
+    Margin Pannel 
+        To create an margin to see content when Nav Pannel is open
+*/
+
+#margin-pannel {
+    width: 0px;
+    height: 0px;
+    transition: all 1s ease;
+}
+
+#margin-pannel.expanded {
+    width: 38vh;
+    height: 10px;
+    transition: all 0.5s ease;
+}
+
+/*
+    Navigation Pannel Icon
+        Burger icon for open/close nav pannel 
+*/
+
+#navigation-burger {
+    width: 100%;
+    transition: all 0.5s ;
+}
+
+#navigation-burger {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* 
+    Navigation Field
+        Field to display when Nav Pannel is open
+*/
+
+.navigation-field {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin: 10px 0;
+}
+
+#navigation-pannel.expanded .navigation-field.show {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+/*
+    Container and Page content
+        Display the navigation beside of the page content
+*/
+
+#pannel-page-split-container {
+  display: flex;
+  height: 100vh;
+}
+
+#page-content {
+  flex: 1;       /* prend tout le reste */
+  padding-left: 60px;
+}
+
+/* 
+    Home button
+        Go to main page
+*/
+
+#nav-home {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.navigation-field > button {
+    width: 100%;
+    margin-bottom: 5pt;
+}
+
+#nav-search {
+    width: 80%;
+    margin-left: 10%;
+    border: solid 1px lightgray;
+    border-radius: 20pt;
+    background-color: white;
+}
+
+#nav-search > input {
+    width: 75%;
+    margin-left: 5%;
+    border: 0px;
+    height: 15pt;
+    margin: 5px 10px;
+}
+
+#nav-search > input:focus {
+  outline: none;
+}
+
+
+#nav-search > img {
+    margin-top: 0px;
+    background-color: transparent;
+}
