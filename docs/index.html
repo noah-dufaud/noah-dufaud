@@ -4,13 +4,152 @@
         <title>Une petite page HTML</title>
         <meta charset="utf-8" />
         <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="styles/index.css">
     </head>
+<style>
+#navigation-pannel {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  width: 30px;
+  height: 38px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  padding: 0px;
+  border-radius: 5px;
+  padding: 5px 10px 0px 10px;
+  border: solid 1pt gainsboro;
+  background-color: rgb(255, 255, 255);
+}
+
+#margin-pannel {
+    width: 0px;
+    height: 0px;
+    background-color: red;
+    transition: all 1s ease;
+}
+
+#margin-pannel.expanded {
+  width: 38vh;
+  height: 10px;
+    transition: all 0.5s ease;
+}
+
+#navigation-pannel.expanded {
+  width: 40vh;
+  height: 96vh;
+  top: 1vh;
+  left: 1vh;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+#navigation-pannel.expanded > button {
+    width: 40vh;
+    transition: all 0.5s ;
+
+}
+
+#navigation-pannel > button {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s ease;
+
+}
+
+.field {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  margin: 10px 0;
+}
+
+#navigation-pannel.expanded .field.show {
+  opacity: 1;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  background: red;
+}
+
+.right {
+  flex: 1;       /* prend tout le reste */
+  background: rgb(255, 255, 255);
+  padding-left: 60px;
+
+}
+
+</style>
     <body>
-        <h1>Un titre de niveau 1</h1>
-        
-        <p>
-            Un premier petit paragraphe.
-            <a href="README.md">GO MARKDOWN</a>
-        </p>
+
+        <div id="navigation-pannel">
+            <button onclick="ChangeE()">
+                <img src="styles/burger.png" width="30px" style="opacity: 0.4; margin-left: -5px;">
+            </button>
+
+            <div class="field" style="background-color: yellow;">
+                <button>Home</button>
+                <input type="text"/>
+            </div>
+            <div class="field" style="background-color: bisque;">
+                <button>Climbing plants</button>
+                <button>3d Engine</button>
+            </div>
+            <div class="field" style="background-color: cadetblue;">
+                <button>Theme</button>
+                <button>Lang</button>
+            </div>
+        </div>
+        <div class="container">
+            <div id="margin-pannel" class="left">ddddddddddd</div>
+            <div class="right">
+                <h1>Un titre de niveau 1</h1>
+                
+                <p>
+                    Un premier petit paragraphe.
+                    <a href="README.md">GO MARKDOWN</a>
+                </p>
+            </div>
+        </div>
     </body>
+    <script src="/js/index.js"></script>
+
+
+<script>
+const div = document.getElementById('navigation-pannel');
+const margin = document.getElementById('margin-pannel');
+const fields = div.querySelectorAll('.field');
+let expanded = false;
+
+document.addEventListener('click', (e) => {
+    if(expanded && e.clientX > window.innerHeight * 0.40 + 10){
+    ChangeE();
+  }
+});
+
+const ChangeE = () => {
+  expanded = !expanded;
+  div.classList.toggle('expanded');
+  margin.classList.toggle('expanded');
+
+  if(expanded){
+    // Fade in après la transition de taille
+    setTimeout(() => {
+      fields.forEach(f => f.classList.add('show'));
+    }, 500); // correspond à la durée de transition
+  } else {
+    // Retire tout sauf le premier champ
+    fields.forEach((f, i) => {
+      if(i!==0) f.classList.remove('show');
+    });
+  }
+};
+</script>
 </html>
