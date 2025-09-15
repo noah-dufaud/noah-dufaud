@@ -8,8 +8,8 @@ let expanded = false;
 
 document.addEventListener('click', (e) => {
     if(expanded && e.clientX > window.innerHeight * 0.40 + 10){
-    ChangeE();
-  }
+      //ChangeE();
+    }
 });
 
 div.addEventListener('click', (e) => {
