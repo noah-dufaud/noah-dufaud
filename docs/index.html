@@ -15,33 +15,30 @@
             </button>
             <hr>
             <div class="navigation-field">
-                <button id="nav-home">
+                <button id="nav-home" onclick="StartHome()">
                     <img src="styles/home.png" width="20px" style="opacity: 0.4;">
                 </button>
                 <div id="nav-search">
-                    <input type="text"/>
+                    <input type="text" placeholder="Not Working"/>
                     <img src="styles/search.png" width="20px" style="opacity: 0.2; vertical-align: middle;">
                 </div>
             </div>
-            <div class="navigation-field" style="background-color: bisque;">
-                <button>Climbing plants</button>
-                <button>3d Engine</button>
+            <hr>
+            <div class="navigation-field" style="padding-top: 15px;">
+                <button onclick="StartCB()">Climbing plants</button>
+                <button>3D Engine</button>
             </div>
-            <div class="navigation-field" style="background-color: cadetblue;">
-                <button>Theme</button>
-                <button>Lang</button>
+            <div id="navigation-setting" class="navigation-field">
+                <hr>
+
+                <button>Themes</button>
+                <button>Langues</button>
             </div>
         </div>
         
         <div id="pannel-page-split-container">
             <div id="margin-pannel"></div>
             <div id="page-content">
-                <h1>Un titre de niveau 1</h1>
-                
-                <p>
-                    Un premier petit paragraphe.
-                    <a href="README.md">GO MARKDOWN</a>
-                </p>
             </div>
         </div>
     </body>

@@ -1,6 +1,8 @@
 const div = document.getElementById('navigation-pannel');
 const margin = document.getElementById('margin-pannel');
+const button = document.getElementById('navigation-burger');
 const fields = div.querySelectorAll('.navigation-field');
+
 let expanded = false;
 
 document.addEventListener('click', (e) => {
@@ -8,6 +10,17 @@ document.addEventListener('click', (e) => {
     ChangeE();
   }
 });
+
+div.addEventListener('click', (e) => {
+    if(!expanded){
+      ChangeE();
+  }
+});
+
+button.addEventListener("click", e => {
+  e.stopPropagation();
+});
+
 
 const ChangeE = () => {
   expanded = !expanded;
@@ -33,10 +46,74 @@ const ChangeE = () => {
       f.classList.add('show');
     }, (i + 0.5) * 200) // correspond à la durée de transition
     });
-  } else {
-
   }
 };
 
+const StartHome = () => {
+    fetch("home.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("page-content").innerHTML = html;
+      StartHomeJs();
+    })
+    .then(() =>
+    {
+      const url = new URL(window.location);
+      url.searchParams.set("page", "home");
+      history.pushState("home", "", url);
+    })
+}
 
+const StartCB = () => {
+    fetch("cb.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("page-content").innerHTML = html;
+      StartCBJs();
+    })
+    .then(() =>
+    {
+      const url = new URL(window.location);
+      url.searchParams.set("page", "climbing-plants");
+      history.pushState("climbing-plants", "", url);
+    })
+}
+
+const StartHomeJs = () => {
+  console.log("Hey")
+}
+
+const StartCBJs = () => {
+  console.log("Hey cb")
+}
+
+window.addEventListener("popstate", e => {
+  const page = e.state?.page || "home";
+  switch(page) {
+    case "climbing-plants":
+      StartCB();
+      break;
+    default:
+      StartHome();
+  }
+});
+
+
+function getQueryParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
+window.addEventListener("load", () => {
+  const page = getQueryParam("page");
+  switch(page) {
+    case "climbing-plants":
+      StartCB();
+      break;
+    default:
+      StartHome();
+  }
+});
+
+StartHome();
 ChangeE();
