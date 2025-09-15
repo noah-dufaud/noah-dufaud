@@ -2,6 +2,7 @@ const div = document.getElementById('navigation-pannel');
 const margin = document.getElementById('margin-pannel');
 const button = document.getElementById('navigation-burger');
 const fields = div.querySelectorAll('.navigation-field');
+const content = document.getElementById("page-content");
 
 let expanded = false;
 
@@ -50,11 +51,15 @@ const ChangeE = () => {
 };
 
 const StartHome = () => {
+    content.classList.add("fade-out");
     fetch("home.html")
     .then(res => res.text())
     .then(html => {
-      document.getElementById("page-content").innerHTML = html;
-      StartHomeJs();
+        setTimeout(() => {
+          document.getElementById("page-content").innerHTML = html;
+          StartHomeJs();
+          content.classList.remove("fade-out");
+        }, 300);
     })
     .then(() =>
     {
@@ -62,14 +67,21 @@ const StartHome = () => {
       url.searchParams.set("page", "home");
       history.pushState("home", "", url);
     })
+    setTimeout(() => {
+      content.classList.remove("fade-out");
+    }, 300);
 }
 
 const StartCB = () => {
+    content.classList.add("fade-out");
     fetch("cb.html")
     .then(res => res.text())
     .then(html => {
-      document.getElementById("page-content").innerHTML = html;
-      StartCBJs();
+        setTimeout(() => {
+          document.getElementById("page-content").innerHTML = html;
+          StartCBJs();
+          content.classList.remove("fade-out");
+        }, 300);
     })
     .then(() =>
     {
